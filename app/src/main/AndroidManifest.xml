@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:dist="http://schemas.android.com/apk/distribution"
+    package="com.example.administrator.woosukjoa">
+
+    <dist:module dist:instant="true" /> <!-- camera, gallery -->
+    <!--  <uses-sdk android:minSdkVersion="19" android:targetSdkVersion="23" />-->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!--이것은 android sdk를 이용한 얼굴 디텍팅이다 -->
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="The Face Shot"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <meta-data
+            android:name="com.google.android.actions"
+            android:resource="@xml/provider_paths" />
+        <activity
+            android:name=".SplashActivity"
+            android:theme="@style/SplashTheme"
+            android:label="The Face Shot"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".PopupActivity" android:theme="@android:style/Theme.Dialog" />
+        <!-- 사진 촬영을 위한 provide -->
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="{package name}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+
+    </application>
+
+</manifest>
